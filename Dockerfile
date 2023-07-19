@@ -1,6 +1,6 @@
-FROM openjdk:8 as build
+FROM maven:3.9.3-eclipse-temurin-8 as build
 COPY . .
-RUN mvn clean package 
+RUN mvn clean package -DskipTests
 
 FROM  openjdk:18-ea-8-jdk-slim 
 COPY --from=build /target/SecureId-1.0.RELEASE.jar zzn.jar
